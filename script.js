@@ -10,6 +10,7 @@ const images = [
 const flexcontainer = document.getElementById('flexcontainer');
 const leftbtn = document.getElementById('left-btn');
 const rightbtn = document.getElementById('right-btn');
+const nav = document.getElementById('nav');
 
 const n = images.length;
 let count = 0;
@@ -21,30 +22,40 @@ for(let i = 0;i < n;i++){
     newimg.src = images[i];
     newimg.classList.add('img-style');
     flexcontainer.appendChild(newimg);
+    const newdots = document.createElement('div');
+    newdots.classList.add('nav-dots');
+    nav.appendChild(newdots);
+    newdots.addEventListener('click', (event) => {
+        const index = [...nav.children].indexOf(event.target);      
+        showimg(index);
+    })
 }
-
+// showimg(0);
 leftbtn.addEventListener('click', () => {
     if(count > 0){
-        count--;
+        showimg(count - 1);
     }
     else {
-        count = n - 1;
+       showimg(n - 1);
     }
-    console.log('Hi left');
-    showimg();
 });
 
 rightbtn.addEventListener('click', () => {
     if(count < n - 1){
-        count++;
+        showimg(count + 1);
     }
     else {
-        count = 0;
+        showimg(0);
     }
-    showimg();
 });
 
-function showimg() {
+function showimg(position) {
+    const prevdot = nav.children[count];
+    prevdot.classList.remove('active');
+    count = position;
+    const newdot = nav.children[count];
+    newdot.classList.add('active');
+
     const translateXDistance = -count * containerwidth;
     flexcontainer.style.transform = `translateX(${translateXDistance}vw)`
 }
