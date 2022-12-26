@@ -63,3 +63,27 @@ img {
     object-fit: cover;
 }
 
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    /* background-color: brown; */
+    bottom: 0;
+}
+
+.nav-dots {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.nav-dots.active {
+    background-color: white;
+}
+
